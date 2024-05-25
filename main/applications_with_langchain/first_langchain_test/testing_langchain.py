@@ -1,10 +1,9 @@
-from dotenv import load_dotenv
-from pathlib import Path
+
 from langchain.prompts.prompt import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_huggingface import HuggingFaceEndpoint
 from ..application_interface import Application
-from utils.utils import Utils
+from main.utils.utils import Utils
 
 class App1(Application):
   

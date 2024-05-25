@@ -1,5 +1,5 @@
-from applications_with_langchain.application_interface import Application
-from constants.informations import Informations
+from main.applications_with_langchain.application_interface import Application
+from main.constants.informations import Informations
 
 
 
