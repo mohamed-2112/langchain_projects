@@ -55,4 +55,4 @@ MANIFEST
 venv/
 
 # Ignore specific files
-.env
+config/.env
