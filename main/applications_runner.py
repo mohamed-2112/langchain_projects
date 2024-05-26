@@ -10,3 +10,7 @@ class ApplicationRunner:
     def langchainTestApp(self):
         information = Informations.information_1
         self.application.run(information = information)
+
+    def ice_breaker_app(self):
+        profile_url = 'https://linkedin.com/in/johnrmarty/'
+        self.application.run(profile_url=profile_url)
