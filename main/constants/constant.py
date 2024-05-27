@@ -7,3 +7,5 @@ In 2004, Musk became an early investor in electric vehicle manufacturer Tesla Mo
 PROFILE_URL = 'https://linkedin.com/in/johnrmarty/'
 
 LINKEDIN_NAME = 'Eden Marco Udemy'
+
+TWEETER_USERNAME = 'EdenEmarco177'
