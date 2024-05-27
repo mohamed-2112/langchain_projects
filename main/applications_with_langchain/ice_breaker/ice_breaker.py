@@ -14,6 +14,7 @@ class IceBreaker(Application):
     def run(self, **kwargs):
         person_name = kwargs["name"]
         response = self.ice_break_with(person_name)
+        print(response)
 
     def ice_break_with(self, name: str) -> str:
         linkedin_data = self.__linkedin_data_summary(name=name)
@@ -30,8 +31,7 @@ class IceBreaker(Application):
         # Choose to use openai or mistral
         llm = HuggingFaceEndpoint(repo_id="mistralai/Mistral-7B-Instruct-v0.3", temperature=1)
         chain = summary_prompt_template | llm
-        res = chain.invoke(input={"information": linkedin_data, "twitter_posts":twitter_data})
-        print(res)
+        res = chain.invoke(input={"information": linkedin_data, "twitter_posts": twitter_data})
         return res
 
     def __linkedin_data_summary(self, name: str):
