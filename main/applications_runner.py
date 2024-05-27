@@ -1,5 +1,5 @@
 from main.applications_with_langchain.application_interface import Application
-from main.constants.constant import INFORMATION, PROFILE_URL
+from main.constants.constant import INFORMATION, PROFILE_URL, LINKEDIN_NAME
 
 
 class ApplicationRunner:
@@ -11,5 +11,5 @@ class ApplicationRunner:
         self.application.run(information=information)
 
     def ice_breaker_app(self):
-        profile_url = PROFILE_URL
-        self.application.run(profile_url=profile_url)
+        name = LINKEDIN_NAME
+        self.application.run(name=name)
