@@ -1,5 +1,4 @@
 import os
-
 from dotenv import load_dotenv
 from pathlib import Path
 from main.applications_with_langchain.first_langchain_test.testing_langchain import App1
