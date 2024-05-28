@@ -5,7 +5,7 @@ import requests
 class LinkedinProfileScrapper:
     def __init__(self):
         self.gist_url = ("https://gist.githubusercontent.com/mohamed-2112/44bff0285827d41d53cf16356c945450/raw"
-                         "/7a128d36caa99e79f5476016e5915fb1dae5ada4/john-marty.json")
+                         "/a7fab86f801de43c8011d5f93a863da41e80b682/john-marty.json")
 
     def scrape_linkedin_profile(self, linkedin_profile_url: str, mock: bool = False):
         """scrape information from LinkedIn profiles,

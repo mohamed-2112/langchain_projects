@@ -6,6 +6,7 @@ from langchain import hub
 from main.applications_with_langchain.ice_breaker.tools.tools import get_profile_url_tavily
 
 
+
 class LinkedInAgent:
     def __init__(self):
         pass
@@ -28,7 +29,7 @@ class LinkedInAgent:
 
         react_prompt = hub.pull("hwchase17/react")
         agent = create_react_agent(llm=llm, tools=tools_for_agent, prompt=react_prompt)
-        agent_executor = AgentExecutor(agent=agent, tools=tools_for_agent, verbose=True)
+        agent_executor = AgentExecutor(agent=agent, tools=tools_for_agent, handle_parsing_errors=True, verbose=True)
         result = agent_executor.invoke(input={"input": prompt_template.format_prompt(name_of_person=name)})
 
         linkedin_profile_url = result["output"]
