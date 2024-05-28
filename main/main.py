@@ -4,6 +4,7 @@ from pathlib import Path
 from main.applications_with_langchain.first_langchain_test.testing_langchain import App1
 from .applications_runner import ApplicationRunner
 from main.applications_with_langchain.ice_breaker.app import IceBreakerApp
+from main.applications_with_langchain.react_langchain.react_langchain_app import ReactLangchainAppAgent
 
 
 def main():
@@ -18,10 +19,12 @@ def main():
     load_dotenv(dotenv_path=env_path)
 
     # application = App1()
-    application2 = IceBreakerApp()
-    application_runner = ApplicationRunner(application2)
-    # applicationRunner.langchainTestApp()
-    application_runner.ice_breaker_app()
+    # application2 = IceBreakerApp()
+    application3 = ReactLangchainAppAgent()
+    application_runner = ApplicationRunner(application3)
+    # applicationRunner.langchain_test_app()
+    # application_runner.ice_breaker_app()
+    application_runner.react_langchain_app_runner()
 
 
 if __name__ == '__main__':

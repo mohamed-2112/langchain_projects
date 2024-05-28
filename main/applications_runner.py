@@ -6,9 +6,12 @@ class ApplicationRunner:
     def __init__(self, application: Application):
         self.application = application
 
-    def langchainTestApp(self):
+    def langchain_test_app(self):
         information = INFORMATION
         self.application.run(information=information)
 
     def ice_breaker_app(self):
+        self.application.run()
+
+    def react_langchain_app_runner(self):
         self.application.run()
