@@ -10,7 +10,7 @@ from langchain.agents import tool
 from langchain.prompts.prompt import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain.agents.output_parsers import ReActSingleInputOutputParser
-
+from main.applications_with_langchain.react_langchain.callbacks import AgentCallbackHandler
 
 @tool
 def get_text_length(text: str) -> int:
@@ -61,7 +61,11 @@ class ReactLangchainAppAgent(Application):
             tools=render_text_description(tools), tool_names=",".join([t.name for t in tools])
         )
 
-        llm = ChatOpenAI(temperature=0, model_kwargs={"stop": ["\nObservation", "Observation"]})
+        llm = ChatOpenAI(
+            temperature=0,
+            model_kwargs={"stop": ["\nObservation", "Observation"]},
+            callbacks=[AgentCallbackHandler()]
+        )
         intermediate_steps = []
 
         agent = (
