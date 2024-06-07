@@ -15,3 +15,6 @@ class ApplicationRunner:
 
     def react_langchain_app_runner(self):
         self.application.run()
+
+    def vector_dbs_runner(self):
+        self.application.run()
