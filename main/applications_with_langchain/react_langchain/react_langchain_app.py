@@ -12,6 +12,7 @@ from langchain_openai import ChatOpenAI
 from langchain.agents.output_parsers import ReActSingleInputOutputParser
 from main.applications_with_langchain.react_langchain.callbacks import AgentCallbackHandler
 
+
 @tool
 def get_text_length(text: str) -> int:
     """Returns the length of a text by characters"""
@@ -77,28 +78,26 @@ class ReactLangchainAppAgent(Application):
                 | llm
                 | ReActSingleInputOutputParser()
         )
-        agent_step: Union[AgentAction, AgentFinish] = agent.invoke(
-            {
-                "input": "What is the length of 'DOG' in characters?",
-                "agent_scratchpad": intermediate_steps,
-            }
-        )
 
-        print(agent_step)
+        agent_step = ""
 
-        if isinstance(agent_step, AgentAction):
-            tool_name = agent_step.tool
-            tool_to_use = find_tool_by_name(tools, tool_name)
-            tool_input = agent_step.tool_input
-            observation = tool_to_use.func(str(tool_input))
-            print(f"{observation=}")
-            intermediate_steps.append((agent_step, str(observation)))
+        while not isinstance(agent_step, AgentFinish):
 
-        agent_step: Union[AgentAction, AgentFinish] = agent.invoke(
-            {
-                "input": "What is the length of 'DOG' in characters?",
-                "agent_scratchpad": intermediate_steps,
-            }
-        )
+            agent_step: Union[AgentAction, AgentFinish] = agent.invoke(
+                {
+                    "input": "What is the length of 'DOG' in characters?",
+                    "agent_scratchpad": intermediate_steps,
+                }
+            )
+
+            print(agent_step)
+
+            if isinstance(agent_step, AgentAction):
+                tool_name = agent_step.tool
+                tool_to_use = find_tool_by_name(tools, tool_name)
+                tool_input = agent_step.tool_input
+                observation = tool_to_use.func(str(tool_input))
+                print(f"{observation=}")
+                intermediate_steps.append((agent_step, str(observation)))
 
         print(agent_step)
