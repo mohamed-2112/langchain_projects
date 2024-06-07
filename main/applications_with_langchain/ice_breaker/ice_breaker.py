@@ -13,14 +13,7 @@ from langchain_openai import ChatOpenAI
 from langchain_mistralai import ChatMistralAI
 
 
-class IceBreaker(Application):
-
-    @override
-    def run(self, **kwargs):
-        person_name = kwargs["name"]
-        response = self.ice_break_with(person_name)
-        print(response)
-        return response
+class IceBreaker:
 
     def ice_break_with(self, name: str) -> tuple[Summary, Any]:
         linkedin_data = self.__linkedin_data_summary(name=name)

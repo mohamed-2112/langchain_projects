@@ -1,14 +1,20 @@
 from main.applications_with_langchain.application_interface import Application
 from main.constants.constant import INFORMATION, PROFILE_URL, LINKEDIN_NAME
-from main.applications_with_langchain.ice_breaker.app import ice_breaker_flask_app
+
 
 class ApplicationRunner:
     def __init__(self, application: Application):
         self.application = application
 
-    def langchainTestApp(self):
+    def langchain_test_app(self):
         information = INFORMATION
         self.application.run(information=information)
 
     def ice_breaker_app(self):
-        ice_breaker_flask_app()
+        self.application.run()
+
+    def react_langchain_app_runner(self):
+        self.application.run()
+
+    def vector_dbs_runner(self):
+        self.application.run()
