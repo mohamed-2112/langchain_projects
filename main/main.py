@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+
+from main.applications_with_langchain.faiss_local_vectorstore.local_vectorstore import LocalVector
 from main.applications_with_langchain.first_langchain_test.testing_langchain import App1
 from .applications_runner import ApplicationRunner
 from main.applications_with_langchain.ice_breaker.app import IceBreakerApp
@@ -25,6 +27,7 @@ def main():
         2: case2,
         3: case3,
         4: case4,
+        5: case5,
     }
     try:
         application = int(input("""
@@ -33,6 +36,7 @@ Hello, choose which application you want to run by choosing a number:
 2. ice breaker app
 3. react langchain agent
 4. intro to vector dbs
+5. faiss local vectorstore with pdf
 - any other choice will close the program.
 """))
         switch.get(application, case_default)()  # Default case is called if the key doesn't exist
@@ -89,12 +93,20 @@ def case4():
     application_runner.rag_runner()
 
 
+def case5():
+    """
+    Run the local vectorstore with pdf
+    """
+    application = LocalVector()
+    application_runner = ApplicationRunner(application)
+    application_runner.local_vectorstore_pdf_runner()
+
+
 def case_default():
     """
     Handle the default case when an invalid choice is made.
     """
     logger.info("Invalid choice. Exiting the program.")
-
 
 
 if __name__ == '__main__':

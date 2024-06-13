@@ -18,3 +18,6 @@ class ApplicationRunner:
 
     def rag_runner(self):
         self.application.run()
+
+    def local_vectorstore_pdf_runner(self):
+        self.application.run()
