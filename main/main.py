@@ -5,7 +5,7 @@ from main.applications_with_langchain.first_langchain_test.testing_langchain imp
 from .applications_runner import ApplicationRunner
 from main.applications_with_langchain.ice_breaker.app import IceBreakerApp
 from main.applications_with_langchain.react_langchain.react_langchain_app import ReactLangchainAppAgent
-from main.applications_with_langchain.intro_to_vector_dbs.ingestion import VectorDbs
+from main.applications_with_langchain.intro_to_vector_dbs.rag import RAG
 import logging
 
 # Configure logging
@@ -84,9 +84,9 @@ def case4():
     """
     Run the intro to vector dbs application.
     """
-    application = VectorDbs()
+    application = RAG()
     application_runner = ApplicationRunner(application)
-    application_runner.vector_dbs_runner()
+    application_runner.rag_runner()
 
 
 def case_default():
