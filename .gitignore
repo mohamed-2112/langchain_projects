@@ -58,3 +58,5 @@ venv/
 config/.env
 
 resources/.langchain-docs
+
+resources/.langchain-docs*/
