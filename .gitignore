@@ -57,4 +57,4 @@ venv/
 # Ignore specific files
 config/.env
 
-resources/
+langchain-docs/
