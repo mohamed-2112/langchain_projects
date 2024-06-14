@@ -4,6 +4,9 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, OpenAI
 from langchain_community.vectorstores import FAISS
+from langchain.chains.retrieval import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain import hub
 
 
 class LocalVector(Application):
@@ -19,3 +22,21 @@ class LocalVector(Application):
         embeddings = OpenAIEmbeddings()
         vectorstore = FAISS.from_documents(docs, embeddings)
         vectorstore.save_local("main/resources/faiss_index_react")
+        print("after save...")
+        new_vectorstore = FAISS.load_local(
+            "main/resources/faiss_index_react",
+            embeddings,
+            allow_dangerous_deserialization=True
+        )
+        print("after load...")
+        print(new_vectorstore)
+        retrieval_qa_chat_prompt = hub.pull("langchain-ai/retrieval-qa-chat")
+        print("after pulling the prompt...")
+        print(retrieval_qa_chat_prompt)
+        combine_docs_chain = create_stuff_documents_chain(OpenAI(), retrieval_qa_chat_prompt)
+        print("after creating the chain...")
+        retrieval_chain = create_retrieval_chain(new_vectorstore.as_retriever(), combine_docs_chain)
+        print("after the retrieval chain")
+        res = retrieval_chain.invoke({"input": "Give me the gist of the selection of features and classifiers in 3 "
+                                               "sentences"})
+        print(res["answer"])

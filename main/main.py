@@ -41,7 +41,7 @@ Hello, choose which application you want to run by choosing a number:
 """))
         switch.get(application, case_default)()  # Default case is called if the key doesn't exist
     except ValueError:
-        logger.error("Invalid input. Please enter a number.")
+        logger.error("Invalid input. Please enter a number/ or an error has occurred in the application.")
         case_default()
 
 
