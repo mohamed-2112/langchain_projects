@@ -9,6 +9,7 @@ from main.applications_with_langchain.ice_breaker.app import IceBreakerApp
 from main.applications_with_langchain.react_langchain.react_langchain_app import ReactLangchainAppAgent
 from main.applications_with_langchain.intro_to_vector_dbs.rag import RAG
 from main.applications_with_langchain.documentation_helper_app.backend.core import DocHelper
+from main.applications_with_langchain.code_interpreter.app import CodeInter
 import logging
 
 # Configure logging
@@ -31,6 +32,7 @@ def main():
         5: case5,
         6: case6,
         7: case7,
+        8: case8,
     }
 
     try:
@@ -43,6 +45,7 @@ Hello, choose which application you want to run by choosing a number:
 5. faiss local vectorstore with pdf
 6. run ingestion for the documentation_helper_app
 7. run the documentation_helper_app
+8. run the code interpreter app
 - any other choice will close the program.
 """))
         switch.get(application, case_default)()  # Default case is called if the key doesn't exist
@@ -115,6 +118,7 @@ def case6():
     application_runner = ApplicationRunner()
     application_runner.documentation_helper_ingestion_runner()
 
+
 def case7():
     """
     Run the local vectorstore with pdf
@@ -122,6 +126,15 @@ def case7():
     application = DocHelper()
     application_runner = ApplicationRunner(application)
     application_runner.documentation_helper_runner()
+
+
+def case8():
+    """
+    Run the local vectorstore with pdf
+    """
+    application = CodeInter()
+    application_runner = ApplicationRunner(application)
+    application_runner.code_interpreter_runner()
 
 
 def case_default():

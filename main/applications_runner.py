@@ -29,3 +29,5 @@ class ApplicationRunner:
     def documentation_helper_runner(self):
         query = "What is Retrieval QA chain?"
         self.application.run(query=query)
+    def code_interpreter_runner(self):
+        self.application.run()
